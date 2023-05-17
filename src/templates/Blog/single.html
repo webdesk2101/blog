@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>{% if post.meta_title %} {{post.meta_title}} {% else %} {{post.title}}{% endif %}</title>
+<meta name="description" content="{% if post.meta_description %} {{post.meta_description}} {% else %} {{post.content|truncatewords:200}}{% endif %}" />
+{% endblock head %}
+{% block content %}
+<div class="container">
+    <div class="row py-3">
+        <div class="col-md-9">
+            <h1 class="h3">{{post.title}}</h1>
+
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a class="text-decoration-none text-danger" href="{% url 'home' %}">Home</a></li>
+                  <li class="breadcrumb-item"><a class="text-decoration-none text-danger" href="#">{{post.category.title}}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{post.title}}</li>
+                </ol>
+              </nav>
+            
+              <hr>
+              <span class="text-danger">Posted on:</span> {{post.edited}}
+              <div class="my-3">
+                <img src="{{post.featured.url}}" alt="Girl in a jacket" width="800" height="400">
+              </div>
+              <div class="my-3">
+                {{post.content}}
+              </div>
+              <span class="text-danger">Post updated on:</span> {{post.edited}}
+
+
+
+
+            </div>
+        <div class="col-md-3">Sidebar</div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock content %}
